@@ -1,0 +1,18 @@
+{
+    "id": 1,
+    "name": "Formação Frontend Terças/Quintas",
+    "code": "FRONTEND1",
+    "startDate": 1326028144,
+    "endDate": 1559088058,
+    "teacherName": "Theo Victor Schlegel",
+    "students": [
+        {
+            "id": 1,
+            "name": "Joao Hotequil",
+            "cpf": "09878890283",
+            "birthDate": 1559088058,
+            "phone": "47999087621",
+            "email": "joao_hotequil@gmail.com"
+        }
+    ]
+}
