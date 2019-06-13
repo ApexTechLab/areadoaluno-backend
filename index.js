@@ -19,6 +19,7 @@ app.use(function(req, res, next) {
 
 
 app.use('/api/student', require('./routes/student').router);
+app.use('/api/class', require('./routes/class').router);
 
 
 app.listen(9090, function() {
