@@ -53,5 +53,26 @@ router.get('/', (req, res) => {
         res.json({ status: 'success', result: classes });
     }
 });
+router.delete('/', (req, res) => {
+    fs.readFile('data/class.json', 'utf8', (err, data) => {
+        if (err) {
+            res.status(500).json({ status: 'error', result: err });
+        } else {
+            const obj = JSON.parse(data);
+
+            if(req.query.id) {
+                let isFound = false;
+
+                obj.classes = obj.classes.filter((classes) => { return classes != req.query.id } );
+            
+                if (!isFound) {
+                    res.status(404).json({ status: 'not found', result: `classes with id ${req.query.id} not found` });
+                }
+            } else {
+                res.json({ status: 'success', result: obj.classes });
+            }
+        }
+    })
+})
 
 module.exports.router = router;
