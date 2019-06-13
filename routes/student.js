@@ -19,6 +19,28 @@ router.post('/', (req, res) => {
 router.put('/', (req, res) => {
     res.json(req.body);
     console.log(req.body);
-});
+})
+
+router.delete('/', (req, res) => {
+    fs.readFile('data/students.json', 'utf8', (err, data) => {
+        if (err) {
+            res.status(500).json({ status: 'error', result: err });
+        } else {
+            const obj = JSON.parse(data);
+
+            if(req.query.id) {
+                let isFound = false;
+
+                obj.students = obj.students.filter((student) => { return student != req.query.id } );
+            
+                if (!isFound) {
+                    res.status(404).json({ status: 'not found', result: `Student with id ${req.query.id} not found` });
+                }
+            } else {
+                res.json({ status: 'success', result: obj.students });
+            }
+        }
+    })
+})
 
 module.exports.router = router;
