@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var fs = require('fs');
-
 const classes = [
     {
         "id": 1,
@@ -44,7 +42,6 @@ const classes = [
 router.post('/', (req, res) => {
     res.json(req.body);
     console.log(req.body);
-    
 });
 
 router.get('/', (req, res) => {
@@ -54,26 +51,10 @@ router.get('/', (req, res) => {
         res.json({ status: 'success', result: classes });
     }
 });
+
 router.delete('/', (req, res) => {
-    fs.readFile('data/class.json', 'utf8', (err, data) => {
-        if (err) {
-            res.status(500).json({ status: 'error', result: err });
-        } else {
-            const obj = JSON.parse(data);
-
-            if(req.query.id) {
-                let isFound = false;
-
-                obj.classes = obj.classes.filter((classes) => { return classes != req.query.id } );
-            
-                if (!isFound) {
-                    res.status(404).json({ status: 'not found', result: `classes with id ${req.query.id} not found` });
-                }
-            } else {
-                res.json({ status: 'success', result: obj.classes });
-            }
-        }
-    })
-})
+    console.log('Delete id: ' + req.query.id);
+    res.sendStatus(200);
+});
 
 module.exports.router = router;
