@@ -29,9 +29,10 @@ router.delete('/', (req, res) => {
             const obj = JSON.parse(data);
 
             if(req.query.id) {
-                let isFound = false;
+                let isFound = true;
 
-                obj.students = obj.students.filter((student) => { return student != req.query.id } );
+                let newstudents = obj.students.filter((student) => { return student.id == req.query.id } );
+                res.status(200).json({ status: 'success', result: newstudents });
             
                 if (!isFound) {
                     res.status(404).json({ status: 'not found', result: `Student with id ${req.query.id} not found` });
