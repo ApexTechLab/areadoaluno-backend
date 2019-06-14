@@ -42,8 +42,9 @@ const classes = [
 ]
 
 router.post('/', (req, res) => {
-    console.log(req, body);
-    res.json(req, body);
+    res.json(req.body);
+    console.log(req.body);
+    
 });
 
 router.get('/', (req, res) => {
